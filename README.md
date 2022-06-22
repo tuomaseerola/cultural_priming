@@ -6,14 +6,16 @@ within-participants design with a single factor) from the past study by
 Lahdelma, Armitage & Eerola (2020). From this data, we only analyse
 tetrads to keep the condition comparable condition to our registered study plan.
 
-We offer two analyses of sample size and power, one Bayesian and one frequentist, detailed below.
+We offer two analyses of sample size and power, one [bayesian](#bayesian) and one [frequentist](#frequentist), detailed below.
 
-## Bayesian Simulation of Power and Sample Size
+***
+
+## Bayesian Simulation of Power and Sample Size {#bayesian}
+
+This simulations uses `BFDA` library by Schönbrodt & Stefan (2019).
 
 ``` r
 library(BFDA)
-library(doParallel)
-detectCores()
 
 set.seed(200)
   
@@ -28,7 +30,7 @@ sim.H0 <- BFDA.sim(expected.ES=0.0, type="t.paired",
                    verbose=FALSE, cores=8, stepsize = 10, design = 'sequential')
 ```
 
-## Results with the planned sample size (N = 100)
+### Results with the planned sample size (N = 100)
 
 ``` r
 BFDA.analyze(sim.H1, design="fixed", n=100, boundary=6)
@@ -41,7 +43,7 @@ BFDA.analyze(sim.H0, design="fixed", n=100, boundary=6)
 #> 67.9% showed evidence for H0 (BF < 0.1667)
 ```
 
-## Analysis to reach effective power (boundary >6)
+### Analysis to reach effective power (boundary >6)
 
 ``` r
 BFDA.analyze(sim.H1, design="sequential", 
@@ -90,11 +92,9 @@ SSD(sim.H1, power=.80, boundary=c(1/6, 6))
 <img src="man/figures/README-simulation5-1.png" width="75%" />
 
 
+## Frequentist Simulation of Power and Sample Size {#frequentist}
 
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-## Frequentist Simulation of Power and Sample Size
+This simulation uses `Superpower` library by Lakens & Caldwell (2021).
 
 ``` r
 library(Superpower)
@@ -133,6 +133,8 @@ print(confint(power_result_vig_1, level = .85))
 #> anova_condition  79.6 76.99136  81.9821
 ```
 
+### Sample size estimation
+
 ``` r
 plot_power(design_result, min_n = 20, max_n = 280,desired_power = 80,liberal_lambda = TRUE)
 ```
@@ -146,9 +148,13 @@ plot_power(design_result, min_n = 20, max_n = 280,desired_power = 80,liberal_lam
 
 # References
 
-Lahdelma, I., Armitage, J., & Eerola, T. (2020). Affective Priming With
+* Schönbrodt, F. D. & Stefan, A. M. (2019). BFDA: An R package for Bayes factor
+  design analysis (version 0.5.0) Retrieved from
+  [https://github.com/nicebread/BFDA](https://github.com/nicebread/BFDA)
+
+* Lahdelma, I., Armitage, J., & Eerola, T. (2022). Affective Priming With
 Musical Chords is Influenced by Pitch Numerosity. *Musicae Scientiae,
-26(1)*, 208–217.
+26(1)*, 208–217. [https://doi.org/10.1177/1029864920911127](https://doi.org/10.1177/1029864920911127)
 
-
+* Lakens, D. & Caldwell, A. (2021). Simulation-Based Power Analysis for Factorial Analysis of Variance Designs. _Advances in Methods and Practices in Psychological Science, 4(1)_, 251524592095150. [https://doi.org/10.1177/2515245920951503](https://doi.org/10.1177/2515245920951503)
 
