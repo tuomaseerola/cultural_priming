@@ -10,9 +10,6 @@ We offer two analyses of sample size and power, one Bayesian and one frequentist
 
 ## Bayesian Simulation of Power and Sample Size
 
-Here we simulate the required sample size for a *Registered Study*,
-where we draw the parameters (effect size of 0.35 and the shape of the $\theta$, and a within-participants design with a one factor containing two levels) from a past study by Lahdelma, Armitage & Eerola (2020).
-
 ``` r
 library(BFDA)
 library(doParallel)
@@ -44,10 +41,13 @@ BFDA.analyze(sim.H0, design="fixed", n=100, boundary=6)
 #> 67.9% showed evidence for H0 (BF < 0.1667)
 ```
 
-## Analysis to reach effective power of 80
+## Analysis to reach effective power (boundary >6)
 
 ``` r
-BFDA.analyze(sim.H1, design="sequential", n.min=20, n.max=150, boundary=6)
+BFDA.analyze(sim.H1, design="sequential", 
+  n.min=20,
+  n.max=150,
+  boundary=6)
 #>                                outcome percentage
 #> 1 Studies terminating at n.max (n=150)       2.2%
 #> 2    Studies terminating at a boundary      97.8%
@@ -65,7 +65,11 @@ BFDA.analyze(sim.H1, design="sequential", n.min=20, n.max=150, boundary=6)
 ### Visualise the simulation results
 
 ``` r
-evDens(BFDA.H1=sim.H1, BFDA.H0=sim.H0, n=100, boundary=c(1/6, 6), xlim=c(1/11, 31))
+evDens(BFDA.H1=sim.H1, 
+  BFDA.H0=sim.H0,
+  n=100,
+  boundary=c(1/6, 6),
+  xlim=c(1/11, 31))
 ```
 
 <img src="man/figures/README-simulation4-1.png" width="75%" />
