@@ -10,7 +10,7 @@ We offer two analyses of sample size and power, one [bayesian](#bayesian) and on
 
 ***
 
-## Bayesian Simulation of Power and Sample Size {#bayesian}
+## Bayesian Simulation of Power and Sample Size (#bayesian)
 
 This simulations uses `BFDA` library by Schönbrodt & Stefan (2019).
 
@@ -92,7 +92,7 @@ SSD(sim.H1, power=.80, boundary=c(1/6, 6))
 <img src="man/figures/README-simulation5-1.png" width="75%" />
 
 
-## Frequentist Simulation of Power and Sample Size {#frequentist}
+## Frequentist Simulation of Power and Sample Size (#frequentist)
 
 This simulation uses `Superpower` library by Lakens & Caldwell (2021).
 
