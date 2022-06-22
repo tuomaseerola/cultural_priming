@@ -6,11 +6,11 @@ within-participants design with a single factor) from the past study by
 Lahdelma, Armitage & Eerola (2020). From this data, we only analyse
 tetrads to keep the condition comparable condition to our registered study plan.
 
-We offer two analyses of sample size and power, one [bayesian](#bayesian) and one [frequentist](#frequentist), detailed below.
+We offer two analyses of sample size and power, one **bayesian** and one **frequentist**, detailed below.
 
 ***
 
-## Bayesian Simulation of Power and Sample Size (#bayesian)
+## Bayesian Simulation of Power and Sample Size
 
 This simulations uses `BFDA` library by Schönbrodt & Stefan (2019).
 
@@ -92,7 +92,7 @@ SSD(sim.H1, power=.80, boundary=c(1/6, 6))
 <img src="man/figures/README-simulation5-1.png" width="75%" />
 
 
-## Frequentist Simulation of Power and Sample Size (#frequentist)
+## Frequentist Simulation of Power and Sample Size
 
 This simulation uses `Superpower` library by Lakens & Caldwell (2021).
 
