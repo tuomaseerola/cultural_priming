@@ -3,7 +3,7 @@
 Here we simulate the required sample size for a *Registered Study*,
 where we draw the parameters (effect size, shape of the $\theta$,
 within-participants design with a single factor) from the past study by
-Lahdelma, Armitage & Eerola (2020). From this data, we only analyse
+Lahdelma, Armitage & Eerola (2022). From this data, we only analyse
 tetrads to keep the condition comparable condition to our registered study plan.
 
 We offer two analyses of sample size and power, one **bayesian** and one **frequentist**, detailed below.
