@@ -1,30 +1,25 @@
-# README
+# Cultural priming
 
-Here we simulate the required sample size for a *Registered Study*,
-where we draw the parameters (effect size, shape of the $\theta$,
-within-participants design with a single factor) from the past study by
-Lahdelma, Armitage & Eerola (2022). From this data, we only analyse
-tetrads to keep the condition comparable condition to our registered study plan.
-
-These are analysis operations and data for the study titled “Valenced
+These are the analysis operations and the data for the study titled “Valenced
 Priming with Acquired Affective Concepts in Music: Automatic Reactions
 to Common Tonal Chords” by Imre Lahdelma and [Tuomas
-Eerola](https://tuomaseerola.github.io/) in the journal of *Music
-Perception*. Read this document at the [documentation
+Eerola](https://tuomaseerola.github.io/) submitted to the journal of [Music
+Perception](https://online.ucpress.edu/mp). 
+
+You can read this document at the [documentation
 site](https://tuomaseerola.github.io/cultural_priming/).
 
-# Sample size
+# Sample size estimation (part of the pre-registration)
 
 Here is the link to the scripts and functions for
 [planning](https://tuomaseerola.github.io/cultural_priming/planning.html)
 the sample size for one sub-experiment.
 
-# Data analysis
+# Data analysis (adhering to the pre-registration)
 
-Four sub-experiments, all collected separately using psytoolkit.
-Original data in zipped folder `raw_data.zip` and requires
+The data consists of four sub-experiments, all collected separately using psytoolkit. Original data in zipped folder `raw_data.zip` and requires
 `compile_data.R` script. For convenience we rely on the exported CSV
-files per experiment.
+files per experiment (in the `data` folder).
 
 ## Load data
 
