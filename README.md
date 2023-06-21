@@ -1,5 +1,5 @@
 # README
-=======
+
 Here we simulate the required sample size for a *Registered Study*,
 where we draw the parameters (effect size, shape of the $\theta$,
 within-participants design with a single factor) from the past study by
