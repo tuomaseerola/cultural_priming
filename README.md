@@ -1,5 +1,3 @@
-
-<<<<<<< HEAD
 # README
 =======
 Here we simulate the required sample size for a *Registered Study*,
@@ -7,7 +5,6 @@ where we draw the parameters (effect size, shape of the $\theta$,
 within-participants design with a single factor) from the past study by
 Lahdelma, Armitage & Eerola (2022). From this data, we only analyse
 tetrads to keep the condition comparable condition to our registered study plan.
->>>>>>> 4255e0199aa811f4a4991bed7a19ff8d3b7fe937
 
 These are analysis operations and data for the study titled “Valenced
 Priming with Acquired Affective Concepts in Music: Automatic Reactions
