@@ -1,25 +1,25 @@
-# Cultural priming
 
-These are the analysis operations and the data for the study titled “Valenced
+# README
+
+These are analysis operations and data for the study titled “Valenced
 Priming with Acquired Affective Concepts in Music: Automatic Reactions
 to Common Tonal Chords” by Imre Lahdelma and [Tuomas
-Eerola](https://tuomaseerola.github.io/) submitted to the journal of [Music
-Perception](https://online.ucpress.edu/mp). 
-
-You can read this document at the [documentation
+Eerola](https://tuomaseerola.github.io/) in the journal of *Music
+Perception*. Read this document at the [documentation
 site](https://tuomaseerola.github.io/cultural_priming/).
 
-# Sample size estimation (part of the pre-registration)
+# Sample size
 
 Here is the link to the scripts and functions for
 [planning](https://tuomaseerola.github.io/cultural_priming/planning.html)
 the sample size for one sub-experiment.
 
-# Data analysis (adhering to the pre-registration)
+# Data analysis
 
-The data consists of four sub-experiments, all collected separately using psytoolkit. Original data in zipped folder `raw_data.zip` and requires
+Four sub-experiments, all collected separately using psytoolkit.
+Original data in zipped folder `raw_data.zip` and requires
 `compile_data.R` script. For convenience we rely on the exported CSV
-files per experiment (in the `data` folder).
+files per experiment.
 
 ## Load data
 
@@ -124,14 +124,14 @@ source('background_across_substudies.R') # Compare backgrounds across the sub-ex
     ##  replicates)
     ## 
     ## data:  df$gender and df$study
-    ## X-squared = 12.539, df = NA, p-value = 0.6967
+    ## X-squared = 12.539, df = NA, p-value = 0.6812
     ## 
     ## 
     ##  Pearson's Chi-squared test with simulated p-value (based on 2000
     ##  replicates)
     ## 
     ## data:  df$study and df$MusExpertise
-    ## X-squared = 3.8175, df = NA, p-value = 0.2759
+    ## X-squared = 3.8175, df = NA, p-value = 0.2814
     ## 
     ## [1] "across all sub-experiments"
     ## [1] "--------------------------"
@@ -146,7 +146,26 @@ source('background_across_substudies.R') # Compare backgrounds across the sub-ex
     ##     Musician Non-musician 
     ##   0.05472637   0.94527363
 
-# Visualise data
+# Describe and Visualise data
+
+First show the means across conditions (table).
+
+``` r
+source('table_of_means.R')             # create table of means
+```
+
+| Sub-experiment | Target    | Prime Neg. chord | Prime Pos. chord |
+|:---------------|:----------|:-----------------|:-----------------|
+| Min            | Neg. Word | 550 (546–554)    | 555 (551–559)    |
+|                | Pos. Word | 542 (538–546)    | 540 (536–545)    |
+| Augm           | Neg. Word | 557 (553–561)    | 565 (561–569)    |
+|                | Pos. Word | 550 (546–555)    | 550 (545–554)    |
+| Dim            | Neg. Word | 545 (540–549)    | 552 (548–556)    |
+|                | Pos. Word | 543 (539–548)    | 538 (534–543)    |
+| Sus            | Neg. Word | 545 (540–549)    | 547 (543–539)    |
+|                | Pos. Word | 535 (530–539)    | 533 (528–537)    |
+
+Create plots.
 
 ``` r
 source('visualise.R')             # as to take in the block information
@@ -171,7 +190,7 @@ print(G2)
 
 ![](README_files/figure-gfm/plot1-2.png)<!-- -->
 
-## Save figures (Figure 1 and 2)
+Save figures
 
 ``` r
 ggsave(filename = 'means.png',plot = G1, device = 'png',dpi = 300, width = 9.5, height = 7)
@@ -253,64 +272,6 @@ knitr::kable(table2,digits = 4,caption='Summary of the analyses of each sub-expe
 | Major-Suspended 4 | Congruence \> 0 |   0.0026 |    0.0019 |  -0.0005 |   0.0057 |    11.1396 |    0.9176 |      |
 
 Summary of the analyses of each sub-experiment.
-
-## Plot posterior plots
-
-``` r
-library(extrafont)
-library(latex2exp)
-
-posterior_MIN <- hyp_MIN$samples
-result_MIN <- bayestestR::hdi(posterior_MIN, ci = c(0.95))
-p1 <- plot(result_MIN)+
-  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
-  see::theme_modern()+
-  scale_x_continuous(limits = c(-0.005,0.015))+
-  labs(title = TeX(r"(Major-Minor (Congruence $\theta$))"))+ 
-   theme(text=element_text(size=16,  family="Palatino"))+
-   theme(plot.title = element_text(hjust = 0.5))
-
-posterior_AUG <- hyp_AUG$samples
-result_AUG <- bayestestR::hdi(posterior_AUG, ci = c(0.95))
-p2 <- plot(result_AUG)+
-  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
-  see::theme_modern()+
-  scale_x_continuous(limits = c(-0.005,0.015))+
-  labs(title = TeX(r"(Major-Augmented (Congruence $\theta$))"))+ 
-   theme(text=element_text(size=16,  family="Palatino"))+
-   theme(plot.title = element_text(hjust = 0.5))
-
-posterior_DIM <- hyp_DIM$samples
-result_DIM <- bayestestR::hdi(posterior_DIM, ci = c(0.95))
-p3 <- plot(result_DIM)+
-  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
-  see::theme_modern()+
-  scale_x_continuous(limits = c(-0.005,0.015))+
-  labs(title = TeX(r"(Major-Diminished (Congruence $\theta$))"))+ 
-   theme(text=element_text(size=16,  family="Palatino"))+
-   theme(plot.title = element_text(hjust = 0.5))
-
-posterior_SUS <- hyp_SUS$samples
-result_SUS <- bayestestR::hdi(posterior_SUS, ci = c(0.95))
-p4 <- plot(result_SUS)+
-  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
-  see::theme_modern()+
-  scale_x_continuous(limits = c(-0.005,0.015))+
-  labs(title = TeX(r"(Major-Suspended 4 (Congruence $\theta$))"))+ 
-   theme(text=element_text(size=16,  family="Palatino"))+
-   theme(plot.title = element_text(hjust = 0.5))
-
-G<-see::plots(p1, p2, p3, p4, n_columns = 2, tags = FALSE,guides = "collect")
-print(G)
-```
-
-![](README_files/figure-gfm/figure2-1.png)<!-- -->
-
-### Save figures
-
-``` r
-ggsave(filename = 'thetas.png',plot = G, device = 'png',dpi = 300,width = 9.5,height = 7)
-```
 
 ## Mean marginal effects in milliseconds
 
@@ -423,17 +384,75 @@ G3
 
 ![](README_files/figure-gfm/figuremeans-1.png)<!-- -->
 
-## Save figures
+### Save Figure 1
 
 ``` r
 ggsave(filename = 'marginal_effects.png',plot = G3, device = 'png',dpi = 300,width = 9.5,height = 7)
+```
+
+## Plot posterior plots
+
+``` r
+library(extrafont)
+library(latex2exp)
+
+posterior_MIN <- hyp_MIN$samples
+result_MIN <- bayestestR::hdi(posterior_MIN, ci = c(0.95))
+p1 <- plot(result_MIN)+
+  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
+  see::theme_modern()+
+  scale_x_continuous(limits = c(-0.005,0.015))+
+  labs(title = TeX(r"(Major-Minor (Congruence $\theta$))"))+ 
+   theme(text=element_text(size=16,  family="Palatino"))+
+   theme(plot.title = element_text(hjust = 0.5))
+
+posterior_AUG <- hyp_AUG$samples
+result_AUG <- bayestestR::hdi(posterior_AUG, ci = c(0.95))
+p2 <- plot(result_AUG)+
+  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
+  see::theme_modern()+
+  scale_x_continuous(limits = c(-0.005,0.015))+
+  labs(title = TeX(r"(Major-Augmented (Congruence $\theta$))"))+ 
+   theme(text=element_text(size=16,  family="Palatino"))+
+   theme(plot.title = element_text(hjust = 0.5))
+
+posterior_DIM <- hyp_DIM$samples
+result_DIM <- bayestestR::hdi(posterior_DIM, ci = c(0.95))
+p3 <- plot(result_DIM)+
+  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
+  see::theme_modern()+
+  scale_x_continuous(limits = c(-0.005,0.015))+
+  labs(title = TeX(r"(Major-Diminished (Congruence $\theta$))"))+ 
+   theme(text=element_text(size=16,  family="Palatino"))+
+   theme(plot.title = element_text(hjust = 0.5))
+
+posterior_SUS <- hyp_SUS$samples
+result_SUS <- bayestestR::hdi(posterior_SUS, ci = c(0.95))
+p4 <- plot(result_SUS)+
+  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
+  see::theme_modern()+
+  scale_x_continuous(limits = c(-0.005,0.015))+
+  labs(title = TeX(r"(Major-Suspended 4 (Congruence $\theta$))"))+ 
+   theme(text=element_text(size=16,  family="Palatino"))+
+   theme(plot.title = element_text(hjust = 0.5))
+
+G<-see::plots(p1, p2, p3, p4, n_columns = 2, tags = FALSE,guides = "collect")
+print(G)
+```
+
+![](README_files/figure-gfm/figure2-1.png)<!-- -->
+
+### Save Figure 2
+
+``` r
+ggsave(filename = 'thetas.png',plot = G, device = 'png',dpi = 300,width = 9.5,height = 7)
 ```
 
 # Compare the evidence between the sub-experiments
 
 Does *Major–Diminished* chord pair provide significantly stronger
 evidence than *Major–Augmented* pair using the posterior distributions?
-How much?
+How large is the difference?
 
 ## Mean difference between the sub-experiments
 
@@ -449,9 +468,9 @@ posteriors = posteriors %>%
 
 ggplot(posteriors, aes(mu_diff)) +
   geom_histogram(aes(y = ..density..),
-                 color = "black",
+                 color = "grey50",
                  fill = "white") +
-  geom_density(linewidth = 1, color = "blue2") +
+  geom_density(linewidth = 1, color = "black") +
   xlab("Difference in population mean DIM - AUG") +
   labs(x = "Difference in population mean DIM - AUG", y='Density', title = "Posterior Distribution") +
   see::theme_modern() +

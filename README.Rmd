@@ -46,7 +46,15 @@ d4 <- describe_participants(SUS)
 source('background_across_substudies.R') # Compare backgrounds across the sub-experiments
 ```
 
-# Visualise data
+# Describe and Visualise data
+
+First show the means across conditions (table).
+
+```{r means, fig.width=10.5,fig.height=7,warning=FALSE,message=FALSE,results='asis'}
+source('table_of_means.R')             # create table of means
+```
+
+Create plots.
 
 ```{r plot1, fig.width=10.5,fig.height=7,warning=FALSE,message=FALSE}
 source('visualise.R')             # as to take in the block information
@@ -64,7 +72,7 @@ print(G1)
 print(G2)
 ```
 
-## Save figures (Figure 1 and 2)
+Save figures
 
 ```{r save_figs, eval = FALSE}
 ggsave(filename = 'means.png',plot = G1, device = 'png',dpi = 300, width = 9.5, height = 7)
@@ -140,61 +148,6 @@ table2$Hypothesis<-'Congruence > 0'
 knitr::kable(table2,digits = 4,caption='Summary of the analyses of each sub-experiment.')
 ```
 
-## Plot posterior plots
-
-```{r figure2, message = FALSE, warning = FALSE,fig.width=9.5,fig.height=7}
-library(extrafont)
-library(latex2exp)
-
-posterior_MIN <- hyp_MIN$samples
-result_MIN <- bayestestR::hdi(posterior_MIN, ci = c(0.95))
-p1 <- plot(result_MIN)+
-  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
-  see::theme_modern()+
-  scale_x_continuous(limits = c(-0.005,0.015))+
-  labs(title = TeX(r"(Major-Minor (Congruence $\theta$))"))+ 
-   theme(text=element_text(size=16,  family="Palatino"))+
-   theme(plot.title = element_text(hjust = 0.5))
-
-posterior_AUG <- hyp_AUG$samples
-result_AUG <- bayestestR::hdi(posterior_AUG, ci = c(0.95))
-p2 <- plot(result_AUG)+
-  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
-  see::theme_modern()+
-  scale_x_continuous(limits = c(-0.005,0.015))+
-  labs(title = TeX(r"(Major-Augmented (Congruence $\theta$))"))+ 
-   theme(text=element_text(size=16,  family="Palatino"))+
-   theme(plot.title = element_text(hjust = 0.5))
-
-posterior_DIM <- hyp_DIM$samples
-result_DIM <- bayestestR::hdi(posterior_DIM, ci = c(0.95))
-p3 <- plot(result_DIM)+
-  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
-  see::theme_modern()+
-  scale_x_continuous(limits = c(-0.005,0.015))+
-  labs(title = TeX(r"(Major-Diminished (Congruence $\theta$))"))+ 
-   theme(text=element_text(size=16,  family="Palatino"))+
-   theme(plot.title = element_text(hjust = 0.5))
-
-posterior_SUS <- hyp_SUS$samples
-result_SUS <- bayestestR::hdi(posterior_SUS, ci = c(0.95))
-p4 <- plot(result_SUS)+
-  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
-  see::theme_modern()+
-  scale_x_continuous(limits = c(-0.005,0.015))+
-  labs(title = TeX(r"(Major-Suspended 4 (Congruence $\theta$))"))+ 
-   theme(text=element_text(size=16,  family="Palatino"))+
-   theme(plot.title = element_text(hjust = 0.5))
-
-G<-see::plots(p1, p2, p3, p4, n_columns = 2, tags = FALSE,guides = "collect")
-print(G)
-```
-
-### Save figures
-
-```{r, eval = FALSE}
-ggsave(filename = 'thetas.png',plot = G, device = 'png',dpi = 300,width = 9.5,height = 7)
-```
 
 
 ## Mean marginal effects in milliseconds
@@ -278,17 +231,73 @@ G3 <- see::plots(g1, g2, g3, g4, n_columns = 2, tags = FALSE,guides = "collect")
 G3
 ```
 
-## Save figures
+### Save Figure 1
 
 ```{r, eval = FALSE}
 ggsave(filename = 'marginal_effects.png',plot = G3, device = 'png',dpi = 300,width = 9.5,height = 7)
 ```
 
 
+## Plot posterior plots
+
+```{r figure2, message = FALSE, warning = FALSE,fig.width=9.5,fig.height=7}
+library(extrafont)
+library(latex2exp)
+
+posterior_MIN <- hyp_MIN$samples
+result_MIN <- bayestestR::hdi(posterior_MIN, ci = c(0.95))
+p1 <- plot(result_MIN)+
+  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
+  see::theme_modern()+
+  scale_x_continuous(limits = c(-0.005,0.015))+
+  labs(title = TeX(r"(Major-Minor (Congruence $\theta$))"))+ 
+   theme(text=element_text(size=16,  family="Palatino"))+
+   theme(plot.title = element_text(hjust = 0.5))
+
+posterior_AUG <- hyp_AUG$samples
+result_AUG <- bayestestR::hdi(posterior_AUG, ci = c(0.95))
+p2 <- plot(result_AUG)+
+  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
+  see::theme_modern()+
+  scale_x_continuous(limits = c(-0.005,0.015))+
+  labs(title = TeX(r"(Major-Augmented (Congruence $\theta$))"))+ 
+   theme(text=element_text(size=16,  family="Palatino"))+
+   theme(plot.title = element_text(hjust = 0.5))
+
+posterior_DIM <- hyp_DIM$samples
+result_DIM <- bayestestR::hdi(posterior_DIM, ci = c(0.95))
+p3 <- plot(result_DIM)+
+  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
+  see::theme_modern()+
+  scale_x_continuous(limits = c(-0.005,0.015))+
+  labs(title = TeX(r"(Major-Diminished (Congruence $\theta$))"))+ 
+   theme(text=element_text(size=16,  family="Palatino"))+
+   theme(plot.title = element_text(hjust = 0.5))
+
+posterior_SUS <- hyp_SUS$samples
+result_SUS <- bayestestR::hdi(posterior_SUS, ci = c(0.95))
+p4 <- plot(result_SUS)+
+  scale_fill_brewer(type = 'seq',palette = 'Greys',direction = -1)+
+  see::theme_modern()+
+  scale_x_continuous(limits = c(-0.005,0.015))+
+  labs(title = TeX(r"(Major-Suspended 4 (Congruence $\theta$))"))+ 
+   theme(text=element_text(size=16,  family="Palatino"))+
+   theme(plot.title = element_text(hjust = 0.5))
+
+G<-see::plots(p1, p2, p3, p4, n_columns = 2, tags = FALSE,guides = "collect")
+print(G)
+```
+
+### Save Figure 2
+
+```{r, eval = FALSE}
+ggsave(filename = 'thetas.png',plot = G, device = 'png',dpi = 300,width = 9.5,height = 7)
+```
+
 
 # Compare the evidence between the sub-experiments 
 
-Does _Major--Diminished_ chord pair provide significantly stronger evidence than _Major--Augmented_ pair using the posterior distributions? How much?
+Does _Major--Diminished_ chord pair provide significantly stronger evidence than _Major--Augmented_ pair using the posterior distributions? How large is the difference?
 
 ## Mean difference between the sub-experiments
 
@@ -304,9 +313,9 @@ posteriors = posteriors %>%
 
 ggplot(posteriors, aes(mu_diff)) +
   geom_histogram(aes(y = ..density..),
-                 color = "black",
+                 color = "grey50",
                  fill = "white") +
-  geom_density(linewidth = 1, color = "blue2") +
+  geom_density(linewidth = 1, color = "black") +
   xlab("Difference in population mean DIM - AUG") +
   labs(x = "Difference in population mean DIM - AUG", y='Density', title = "Posterior Distribution") +
   see::theme_modern() +
@@ -377,5 +386,4 @@ rownames(S) <-
 knitr::kable(S, digits = 4)
 
 ```
-
 
