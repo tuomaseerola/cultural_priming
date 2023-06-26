@@ -124,14 +124,14 @@ source('background_across_substudies.R') # Compare backgrounds across the sub-ex
     ##  replicates)
     ## 
     ## data:  df$gender and df$study
-    ## X-squared = 12.539, df = NA, p-value = 0.6812
+    ## X-squared = 12.539, df = NA, p-value = 0.7031
     ## 
     ## 
     ##  Pearson's Chi-squared test with simulated p-value (based on 2000
     ##  replicates)
     ## 
     ## data:  df$study and df$MusExpertise
-    ## X-squared = 3.8175, df = NA, p-value = 0.2814
+    ## X-squared = 3.8175, df = NA, p-value = 0.2854
     ## 
     ## [1] "across all sub-experiments"
     ## [1] "--------------------------"
@@ -164,38 +164,6 @@ source('table_of_means.R')             # create table of means
 |                | Pos. Word | 543 (539–548)    | 538 (534–543)    |
 | Sus            | Neg. Word | 545 (540–549)    | 547 (543–539)    |
 |                | Pos. Word | 535 (530–539)    | 533 (528–537)    |
-
-Create plots.
-
-``` r
-source('visualise.R')             # as to take in the block information
-
-fig1 <- visualise(data = MIN,titletext='Major-Minor') 
-fig2 <- visualise(data = AUG,titletext='Major-Augmented') 
-fig3 <- visualise(data = DIM,titletext='Major-Diminished') 
-fig4 <- visualise(data = SUS,titletext='Major-Suspended 4') 
-
-G1<-see::plots(fig1[[1]], fig2[[1]], fig3[[1]], fig4[[1]], n_columns = 2, tags = FALSE,guides = "collect")
-
-G2<-see::plots(fig1[[2]], fig2[[2]], fig3[[2]], fig4[[2]], n_columns = 2, tags = FALSE,guides = "collect")
-
-print(G1)
-```
-
-![](README_files/figure-gfm/plot1-1.png)<!-- -->
-
-``` r
-print(G2)
-```
-
-![](README_files/figure-gfm/plot1-2.png)<!-- -->
-
-Save figures
-
-``` r
-ggsave(filename = 'means.png',plot = G1, device = 'png',dpi = 300, width = 9.5, height = 7)
-ggsave(filename = 'mean_and_raw_values.png',plot = G2, device = 'png',dpi = 300, width = 10.5, height = 7)
-```
 
 # Bayesian Analysis
 

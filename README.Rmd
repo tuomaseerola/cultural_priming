@@ -54,9 +54,8 @@ First show the means across conditions (table).
 source('table_of_means.R')             # create table of means
 ```
 
-Create plots.
 
-```{r plot1, fig.width=10.5,fig.height=7,warning=FALSE,message=FALSE}
+```{r plot1, fig.width=10.5,fig.height=7,warning=FALSE,message=FALSE, eval=FALSE,echo=FALSE}
 source('visualise.R')             # as to take in the block information
 
 fig1 <- visualise(data = MIN,titletext='Major-Minor') 
@@ -72,9 +71,8 @@ print(G1)
 print(G2)
 ```
 
-Save figures
 
-```{r save_figs, eval = FALSE}
+```{r save_figs, eval = FALSE,echo=FALSE}
 ggsave(filename = 'means.png',plot = G1, device = 'png',dpi = 300, width = 9.5, height = 7)
 ggsave(filename = 'mean_and_raw_values.png',plot = G2, device = 'png',dpi = 300, width = 10.5, height = 7)
 ```
